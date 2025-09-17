@@ -1,0 +1,606 @@
+Overview
+
+The goal of this lab is to familiarize yourselves with Python so that we can soon begin integrating, wrangling, analyzing, and visualizing data. This lab will tour you through the basics of Python and will ask that you create a series of simple algorithms as a final deliverable.
+
+Using Jupyter notebooks
+
+You are currently reading text that was entered into a Markdown cell. In this class we will be using Markdown cells (where you can redact text using Markdown styling) and Code cells (where you can write Python code).
+
+Normally, in a standard Python script (.py file), we would use the hash symbol (#) at the start of a line where we wanted to add a comment to our code. However, the Markdown cells in Jupyter notebooks allow you to go a step further by making comments more readable and elaborate.
+
+You can create a new cell by hitting the + icon at the top-left of the notebook tab window (or by pressing a when no cells are selected).
+When adding a cell, a Code cell is created by default, but you can convert this cell into a Markdown cell by selecting Markdown from the dropdown menu at the top of the notebook tab window while the cell is selected (or you can just press m with the cell selected).
+After having edited a cell, you can press Shift+Enter or Ctrl/Cmd+Enter to run the cell (or you can use the play button at the top of the tab window). This will render the Markdown text if it is a Markdown cell, or it will run the Python script if it is Code cell.
+To edit a rendered Markdown cell, double-click on it (try double-clicking on this one).
+Note as well that the directory in which the present notebook (.ipynb file) is located is visible on the left pane (if viewing on your browser). Using this directory, you can open files within JupyterLab: your entire workspace (files and folders inside your current directory) is technically accessible from within JupyterLab, so if that simplifies things for you, then use it!
+
+For more on Jupyter, see the official documentation and this video guide. For more on running cells and some of the intricacies involving code execution order, watch this video from 00:05:30 onward, which highlights some issues you will definitely face as your notebooks become more elaborate!
+
+Playing with Python
+
+Python variables and object types
+
+Python is dynamically typed, meaning that any variable can be assigned any value. There are no type declarations. A variable that holds an integer can then be assigned a string, for example. Primitive types include integers, floats, strings (both single-byte and Unicode), and booleans (with literals True and False). Built-in container types include lists, dictionaries, and classes. (source)
+
+In Python as with other languages, we assign values (data) to variables. There are certain conventions for naming variables in Python which you should follow:
+
+Use lowercase without spaces.
+Use underscores in place of spaces.
+Name variables descriptively.
+Do not start variable name with a number.
+Avoid existing function and built-in names.
+For more on naming schemes see this quick reference.
+
+ 
+[1]
+0s
+first_statement = 'hello class'
+second_statement = 'in the lesson below, run the code cells to see the results (they will only show if they are being printed). Also, feel free to modify the code as you want.'
+
+print(first_statement)
+print(second_statement)
+ hello class
+in the lesson below, run the code cells to see the results (they will only show if they are being printed). Also, feel free to modify the code as you want.
+Run the above cell. It should output the result of your print statements. In the following sections, you are encouraged to run the code cells, edit, and interact with them as needed.
+
+Numbers
+
+Numbers can come in different forms!
+
+ 
+[2]
+0s
+x = 99
+y = 4.9
+ 
+[3]
+0s
+type(x)
+ int
+ 
+[4]
+0s
+type(y)
+ float
+ 
+[5]
+0s
+z = x+y
+type(z)
+ float
+Beyond the fact that they are different values, What is the main difference between x and y? What data type do we get when adding them together? Write your answer in the Markdown cell below. (/2)
+Answer: x is a integer while y has a decimal (float) and adding them together creates a new float.
+
+Booleans
+
+Booleans are boring: True or False? Well, They can be useful sometimes.
+
+ 
+[6]
+0s
+i_am_false = False
+i_am_true = True
+Logical tests will result in a boolean. For example:
+
+ 
+[7]
+0s
+i_am_false == i_am_true
+ False
+ 
+[8]
+0s
+is_this_true = i_am_false == i_am_true
+print(is_this_true)
+ False
+What is the difference between the two types of equal signs (=,==) above? How are they being used differently? Write your answer in the Markdown cell below. (/1)
+Answer: The = assigns the code to a varible and == checks if the two code pieces are equal to each other. In line 8, the = is assigning true or false to each variable i_am_blank. line 9 is checking if the items match each other and since they do not, we get false. line 10 is assigning i_am_false == i_am_true, which outputs false, into is_this_true.
+
+ 
+[9]
+0s
+x = False
+y = "False"
+ 
+[10]
+0s
+type(x), type(y)
+ (bool, str)
+What is the difference difference between x and y above? Write your answer in the Markdown cell that follows. (/1)
+Answer: Baceause x is not in quotations, it is assumed to be boolean while y is in quotations so it is considered a string.
+
+Strings
+
+Strings are text data. Strings can be declared with either '' or "" marks.
+
+ 
+[11]
+0s
+'I am a string' == "I am a string"
+ True
+In the code cell below, declare an empty string using a variable name that describes this fact (/2)
+ 
+[12]
+0s
+'this string fact'=="this string fact" #true     vs.
+'this string fact'=="thisstring fact" #false
+ False
+Strings have many built-in methods (all native Python objects do). But in this lab we will be exploring these a little further than other built-in methods.
+
+For example, you can slice a string by selecting specific characters inside it using the index of its position in the string:
+
+ 
+[13]
+0s
+date = "Nov 1, 2021"
+first_char = date[0]
+
+print(first_char)
+ N
+In the code cell below, print the character 'v' from date (/1)
+ 
+[14]
+0s
+date = "Nov 1, 2021"
+thirdChar = date[2]
+print(thirdChar)
+ v
+You can also slice ranges of string characters.
+
+ 
+[15]
+0s
+profile = "21, renter, John Smith"
+
+age = profile[0:2]
+housing_status = profile[4:10]
+name = profile[12:]
+
+#concatenate variables inside a print statement like so
+print(age,housing_status,name)
+ 21 renter John Smith
+Above, name was assigned the string "John Smith" by selecting the characters located as of position 12. What number could you have written after the colon (:) to obtain the same string? Why might the above notation be more useful in cases where profile always ends with someone's (anyone's) name? Write your answers in the cell below (/2)
+ 
+[16]
+0s
+profile = "21, renter, John Smith"
+age = profile[0:2]
+housing_status = profile[4:10]
+name = profile[12:22]         #22
+print(name)                   #John Smith
+ John Smith
+Answer: 22, If the profile always ends with a name then stopping at the colon will result in printing from the starting point to the end of the string, which can be useful for people with long names.
+
+You can also use the built-in split method to chunk a string into different pieces based on a delimiter.
+
+ 
+[17]
+0s
+attributes = profile.split(',')
+print(attributes)
+ ['21', ' renter', ' John Smith']
+What object type is attributes? Use the type command in the code cell below to find out. (/1)
+ 
+[18]
+0s
+type(attributes) #list
+ list
+Finally, in the code cell below, print out profile in all uppercase and with all commas replaced by semicolons (;). Use this documentation as a reference to guide you. (/2)
+ 
+[19]
+0s
+jj=profile.upper()
+print(
+    jj.split()
+)
+ ['21,', 'RENTER,', 'JOHN', 'SMITH']
+Lists
+
+Lists can contain any number of objects of any type. Lists are a very versatile data type which you will find yourself using often.
+
+ 
+[20]
+0s
+#using [] will create an empty list
+x = []
+In the code cell below, there are some examples of lists and some comments that guide you in understanding them. Comments are also used in these labs for guidance, much like this cleaner looking Markdown cell.
+
+ 
+[21]
+0s
+#below we re-declare x as a rather eclectic list
+x = ["a",45,"$ 89",True,profile,None,"pay attention",[1,2,3,4],99.9]
+
+#As you can see, lists can contain variables, as well as other lists.
+#They can basically contain anything, in any order.
+
+#You can write them out differently as well, for improved legibility.
+#Let's declare this list once more, this time by separating each item by a new line.
+x = [
+    "a"
+     ,45
+     ,"$ 89"
+     ,True
+     ,profile
+     ,None
+     ,"pay attention"
+     ,[1,2,3,4]
+     ,99.9
+    ]
+
+print(x)
+
+#Note the item inside x called None. This is not a string with text "None" but is an object of type None. This is also a data type you will encounter in Python!
+nothing = None
+type(nothing)
+ ['a', 45, '$ 89', True, '21, renter, John Smith', None, 'pay attention', [1, 2, 3, 4], 99.9]
+NoneType
+Lists have several built-in methods. In the code cell below, using the hash (#) symbol, add comments below each operation describing what exactly you think the list method is doing. (/2)
+ 
+[22]
+0s
+#We have already declared a list called x above.
+
+x = ["a",45,"$ 89",True,profile,None,"pay attention",[1,2,3,4],99.9]
+x = [
+    "a" #string
+     ,45#number
+     ,"$ 89"#string
+     ,True#true or false
+     ,profile#call variable
+     ,None#obeject type is none
+     ,"pay attention"#string
+     ,[1,2,3,4]#numerical list
+     ,99.9#number
+    ]
+#the two x lists are being assigned to x
+print(x)
+nothing = None
+type(nothing)#prints the type of the variable 'nothing' is, which is none
+ ['a', 45, '$ 89', True, '21, renter, John Smith', None, 'pay attention', [1, 2, 3, 4], 99.9]
+NoneType
+As you might have noticed, these list methods operate in-place on the list from which they're being called. This means you don't need to assign the result to a new variable: it does the work directly on the list you called it from, permanently changing that list.
+
+Sets
+
+Sets are more rarely used in our context. They are unordered, list-like objects whose contained objects must be distinct, meaning there can be no duplicates. Like lists, sets are mutable (you can change what's inside it once its been created), but they do not contain the same number of built-in functions as lists do.
+
+One great use of sets is for removing duplicates from a list (by turning it into a set).
+
+ 
+[23]
+0s
+the_list = [1,6,3,6,3,6,3,5,9,9,1]
+print("Check out this list: ",the_list)
+
+new_set = set(the_list)
+print("Here is a set of distinct values: ",new_set)
+print("We can see that it is a set here: ",type(new_set))
+
+new_list = list(new_set)
+print("Our new list of distinct values: ",new_list)
+ Check out this list:  [1, 6, 3, 6, 3, 6, 3, 5, 9, 9, 1]
+Here is a set of distinct values:  {1, 3, 5, 6, 9}
+We can see that it is a set here:  <class 'set'>
+Our new list of distinct values:  [1, 3, 5, 6, 9]
+Tuples
+
+Tuples are like lists, but they are immuatable (frozen), and can only hold one kind of object. Unlike sets, however, they allow duplicates.
+
+ 
+[24]
+0s
+# using the () will create an empty tuple
+x = ()
+print(type(x))
+ <class 'tuple'>
+Tuples are great for creating objects you know you don't want to ever be changed. For example, they are great for holding coordinates! By being restrictive (in this case, using a tuple instead of a list), you narrow the scope of possibility for the variable, limiting what can be done to it and therefore having tighter control over it. In other words, it allows for cleaner and more predictable code.
+
+ 
+[25]
+0s
+loc_montreal = (45.49980145207762, -73.57467364738282)
+print(loc_montreal)
+ (45.49980145207762, -73.57467364738282)
+Dictionaries
+
+Since Python 3.6, dicts - like lists - are ordered (this means that the order in which dictionary elements were created is the order in which they remain, that is, until you choose to re-order them).
+
+Dictionaries are like lists in that they are mutable (changeable), flexible containers that can hold just about anything. The difference with lists though is that your elements can be labeled. This means that you can access items in a dictionary using a label, instead of using an index like you have seen with lists (e.g. list[position]).
+
+In dictionaries, the label is called the key, whereas the item it points to is called its value.
+
+ 
+[26]
+0s
+# using the {} will create an empty dictionary
+x = {}
+print(type(x))
+ <class 'dict'>
+Let's create a dictionary.
+
+John is a potential intern at Via Rail. You've scraped their LinkedIn profile (for some reason...), and you've structured some of the data retrieved as follows:
+
+ 
+[27]
+0s
+profile_john = {"name": "John Smith", "age": 21, "hometown": "Montreal, QC"}
+
+print(profile_john)
+ {'name': 'John Smith', 'age': 21, 'hometown': 'Montreal, QC'}
+You can access a particular value in a dict by selecting its key:
+
+ 
+[28]
+0s
+name_john = profile_john["name"]
+print(name_john)
+ John Smith
+ 
+[29]
+0s
+#to add an item to a dict, simply declare the new key with its value as follows:
+profile_john['religion'] = 'None'
+
+print(profile_john)
+ {'name': 'John Smith', 'age': 21, 'hometown': 'Montreal, QC', 'religion': 'None'}
+In the code cell below, print the following sentence using the three values found in profile_john: (/2)
+"Their name is John, they're 21, and they come from Montreal, QC. Religion? None."
+
+Check back on your Python string methods for help formatting this print sentence.
+
+ 
+[30]
+0s
+hometown_john = profile_john['hometown']
+religion_john = profile_john['religion']
+print("Their name is ", name, " they're", age, " and they come from from", hometown_john, " Religon?", religion_john)
+ Their name is  John Smith  they're 21  and they come from from Montreal, QC  Religon? None
+Control flow
+
+Conditional statements (if, elif, else)
+
+Conditional statements are very useful. They do a logical test, and if that test is true, allow the flow to enter its codeblock. Otherwise, they will skip whatever operations are nested within them and move on. You can stack conditional statements to see if data matches a series of conditions. Think of it as an investigation, where you ask a bunch of yes/no questions, and choose a certain follow-up question in accordance with the answer you got.
+
+ 
+[31]
+0s
+my_variable = 'The world is BIIIIG'
+
+if 'i' in my_variable.lower():
+    print("'The' is a funny word, isn't it?")
+elif my_variable[0:3] == 'The':
+    print("'The' is a funny word, isn't it?")
+else:
+    print("Fuhgettaboutit")
+
+
+ 'The' is a funny word, isn't it?
+Modify my_variable in the code cell above so that it prints "'The' is a funny word, isn't it?" instead of "OK great" (/1)
+ 
+[32]
+0s
+my_variable = 'sam'
+
+if 'i' in my_variable.lower():
+    print('OK great')
+elif my_variable[0:3] == 'The':
+    print("'The' is a funny word, isn't it?")
+else:
+    print("Fuhgettaboutit")
+ Fuhgettaboutit
+Modify my_variable n the code cell above so that it prints "Fuhgettaboutit" (/1)
+ 
+[33]
+0s
+my_variable = 'The world is BIIIIG'
+
+if 'i' in my_variable.lower():
+    print('OK great')
+elif my_variable[0:3] == 'The':
+    print("'The' is a funny word, isn't it?")
+else:
+    print("Fuhgettaboutit")
+ OK great
+For loops
+
+Writing for loops in Python is easy. Each iteration in the loop below declares a string in the list as the variable my_letter and then prints it if its length is equal to 1.
+
+ 
+[34]
+0s
+my_list = ['a','b','a','b','d','d','g','h','a','h','sdf','a','fsafd','sdfdsf']
+
+for my_letter in my_list:
+    if len(my_letter) == 1:
+        print(my_letter)
+ a
+b
+a
+b
+d
+d
+g
+h
+a
+h
+a
+In the code cell below, write a for loop that prints only numbers that are less than 10 from the list you are provided with. Note that we did not go over arithmetic operators (+,-,*,/,>,<,==) but they are fairly universal... (/2)
+ 
+[35]
+0s
+my_numberlist = [123,4,76,46,34,4,6,2,0,12,65,4,9,1,0,199,19000]
+for my_number in my_numberlist:
+    if my_number < 10:
+        print(my_number)
+
+ 4
+4
+6
+2
+0
+4
+9
+1
+0
+Practice Task
+
+Working with Via Rail as a junior data specialist
+
+You're at a new job with Via Rail, and you're pretty good at Python. You have been given a messy inventory of stations by a supervisor for the entirety of Canada. The supervisor isn't data legible and doesn't realize how much of a mess the data are. They have a cartography intern who isn't very savvy and would like a list of cities without the state name (or any other clutter that may be associated) to be used as labels for their hopefully good looking PDF maps... Even though this mapmaker could probably figure this out themselves, they clearly can't! Further, since interns come and go, the next intern might ask this of you again for another map in a couple months. Also, you can't guarantee that stations will always be in the same cities, especially given a recent boost in federal funding towards passenger rail infrastructure, it's likely that the number of stations will change over time.
+
+You could clean this data in Excel, but that would mean having to do it again, manually, the next time, and again the time after that. Also, you really don't want to be manually keeping track of new station names.
+
+You conclude that you should write a small script that can handle new incoming data and output clean city names for these ineffective mapping interns, but also to clean up the messy data you are regularly receiving from your clumsy supervisor so you can do more effective analyses with them. Basically, you will write a small algorithm that will automate a simple data wrangling task, mostly involving strings.
+
+The list below is a sample of 10 stations from open-source data of all Via Rail's stations. The data was intentionally modified here to create a difficult but very realistic scenario!
+
+Via Rail's stations in Canada
+
+A map of Via Rail's stations in Canada (source)
+
+In a new cell below, write a Python algorithm that will create a new list containing only the city names and print that list using a print statement. Everything you need has been demonstrated to you previously in this lab. Your code shouldn't be more than a couple lines maximum. (/4)
+ 
+[36]
+0s
+sample_stations = [
+    "555,XYUL,Aeroport Montreal Pierre-Elliott Trudeau,-73.75183367;45.45698788",
+"600,ALDR,Aldershot,-79.855009;43.312886",
+"344,ALEX,Alexandria,-74.639672;45.31805",
+"221,AMQU,Amqui,-67.436172;48.46626",
+"636,AMYO,Amyot,-84.95412177;48.4828773",
+"633,ANJO,Anjou (EXO),-73.59680183;45.617796",
+"106,ARMG,Armstrong,-89.037603;50.301424",
+"102,AUDN,Auden,-87.88987518;50.22916625",
+"220,AZIL,Azilda,-81.138044;46.564107",
+"415,BLVL,Belleville,-77.37455;44.17961",
+]
+ 
+[37]
+0s
+city_names = []
+for station_info in sample_stations:
+    # Split the string by the comma and space to get the parts
+    parts = station_info.split(',')
+    # The city name is the third element after splitting (index 2)
+    city_name = parts[2]
+    city_names.append(city_name)
+
+print(city_names)
+ ['Aeroport Montreal Pierre-Elliott Trudeau', 'Aldershot', 'Alexandria', 'Amqui', 'Amyot', 'Anjou (EXO)', 'Armstrong', 'Auden', 'Azilda', 'Belleville']
+You would also like to create a dictionary to store this data so that you can do analyses with it later. Your dictionary labels should probably be the Station ID, since these are unique values, and you do not risk running into an issue with two city names being the same. Doing so will make sure you don't have any duplicate keys in your dictionary. Each key in this dictionary should contain all the relevant info that you're able to parse from the somewhat messy list provided above.
+
+You imagine your dictionary as formatted like the following (pay careful attention to all its components and their respective types):
+
+ 
+[38]
+0s
+mystations = {
+    "ALDR": ["Aldershot", 600, -79.855009, 43.312886],
+    #...
+}
+In the template code cell below and using sample_stations, create a dictionary that imitates the structure suggested above. You will need to think through this task in steps. Focus and solve this ONE STEP AT A TIME. (/4)
+ 
+[39]
+0s
+#create your new, empty dict, which you will be populating
+mystations = {}
+
+#recall for loops, and assigning data to variables to break things into steps
+for station_info in sample_stations:
+    parts = station_info.split(',')
+    station_id = parts[1]
+    station_data = [parts[2], int(parts[0]), float(parts[3].split(';')[0]), float(parts[3].split(';')[1])]
+    mystations[station_id] = station_data
+
+print(mystations)
+ {'XYUL': ['Aeroport Montreal Pierre-Elliott Trudeau', 555, -73.75183367, 45.45698788], 'ALDR': ['Aldershot', 600, -79.855009, 43.312886], 'ALEX': ['Alexandria', 344, -74.639672, 45.31805], 'AMQU': ['Amqui', 221, -67.436172, 48.46626], 'AMYO': ['Amyot', 636, -84.95412177, 48.4828773], 'ANJO': ['Anjou (EXO)', 633, -73.59680183, 45.617796], 'ARMG': ['Armstrong', 106, -89.037603, 50.301424], 'AUDN': ['Auden', 102, -87.88987518, 50.22916625], 'AZIL': ['Azilda', 220, -81.138044, 46.564107], 'BLVL': ['Belleville', 415, -77.37455, 44.17961]}
+From your dictionary, print the value of Belleville (BLVL) in the code cell below. (/1)
+ 
+[40]
+0s
+if station_id == "BLVL":
+    print(station_id)
+
+ BLVL
+What type of object is the value for "BLVL"? Locate it in your dictionary and print its type in the code cell below. (/1)
+ 
+[41]
+0s
+if station_id == "BLVL":
+    print(type("BLVL"))
+ <class 'str'>
+Again from the key-value data in your dict, print the latitudes contained in the value of key "BLVL" in the code cell below. (/1)
+ 
+[48]
+0s
+# The latitude for 'BLVL' is the fourth element (index 3) in the list value associated with the key 'BLVL'
+coordinates_list = []
+for station_data in mystations.values():
+    coordinates = str(station_data[2])
+print(coordinates)
+ -77.37455
+The mapping intern has no idea how to use dictionaries. They need a list of the coordinates so they can georeference and make a simple plot map of stations across Canada...
+
+Using your dictionary, create a list of coordinates (latitude AND longitude) in the code cell below. Combine these two values into one text object, separated by a comma. (/2)
+ 
+[62]
+0s
+coordinates_list = []
+for station_data in mystations.values():
+    coordinates = str(station_data[2]) + "," + str(station_data[3])
+    coordinates_list.append(coordinates)
+print(coordinates_list)
+ ['-73.75183367,45.45698788', '-79.855009,43.312886', '-74.639672,45.31805', '-67.436172,48.46626', '-84.95412177,48.4828773', '-73.59680183,45.617796', '-89.037603,50.301424', '-87.88987518,50.22916625', '-81.138044,46.564107', '-77.37455,44.17961']
+Reflection and final tasks
+
+In a Markdown cell below, write a few sentences about you envision using some of the basic Python skills you learned this week (e.g., variables, conditional statements, for loops, string methods, etc.) in your proposed project. How would these functions apply to your own datasets? (/5)
+An idea of how i'm going to code my project is with loops since there will be a lot of data to sift through. It will speed up the process, not the coding part, that will take forever. This data will probably be a list type assigned to variables to make the data sets easier to work with.
+
+Using .gitignore files
+
+If you are not already aware of what .gitignore files are, then keep reading.
+
+A .gitignore allows you to tell git what not to track or commit to your repository. Basically, if you have created some clutter (notes, subdirectories) in your local repository, or your code has generated some unwanted files you prefer not to share to your public repository hosted on GitHub, then you can tell git to ignore these inside a .gitignore file. This file needs to be located at the root directory of your repository (i.e. not inside a subdirectory).
+
+To create a .gitignore file, you can do the following (some commands might be slightly different if you are in DOS):
+
+touch .gitignore to create the file
+ls to view your file in the directory
+Oh! You can't see it. This is because adding a point before a file or folder name makes it hidden from view. This is true in Windows Explorer (PC) or in Finder (Mac) as well.
+
+To view hidden items, enter ls -a (for all). You can also add the -l argument for a more detailed display (ls -al).
+Now you should see your new .gitignore file, as well as a folder called .git. Note that any directory with a .git folder inside it is a sign that it's an active git repository. This folder is created automatically and stores your version history, etc.
+
+To edit your .gitignore file, open it in the text editor of your choice (if you are willing to do this directly from within the console, you can type vi .gitignore to open the file in Vim). If you want to use another text editor that you cannot access directly through a command, you will need to navigate to your directory and open it from outside the command line.
+In your .gitignore file, you can basically write out each file you would like to ignore on a separate line. If you wanted to ignore an entire folder, then you just need to write the folder name followed by a forward slash (/).
+
+In my case, I would like git to ignore my virtual environment folder, which I happened to have created inside my repo. I would also like it to ignore the .ipynb_checkpoints folder that was created automatically by JupyterLab.
+
+If this is true for you as well, then you might want to input the following text inside your .gitignore. If you are using Vim, then you will need to press i before inputting anything.
+venv*/
+.ipynb_checkpoints/
+In the snippet above, venv*/ is used to match with any folder that starts with the word venv, followed by any number of other characters or digits. For more elaborate pattern matching guidance, you can refer to this documentation. Add any other files or folders you would like to hide from your online repository...
+
+When you are done inputting what you want git to ignore, save and close your text editor (:wq in Vim).
+Now, enter git status: any untracked items you input into your .gitignore file will no longer be visible.
+Removing files that are already tracked
+
+If you have already added and started tracking changes to a file which you would now like git to ignore, see these instructions.
+
+If you want to ignore a file that is already checked in, you must untrack the file before you add a rule to ignore it. From your terminal, untrack the file. $ git rm --cached FILENAME
+
+Pushing your .gitignore to your online repository
+
+The last thing to consider is whether or not you would like your gitignore to be public. If you were pushing this code to a repo you expect others to be downloading and using, you might not want them to see what you're trying to ignore on your own machine. In this case, though, we would like to see your gitignore file.
+
+Check in your .gitignore file and commit it to your repo so that it gets pushed to GitHub: git add .gitignore, git commit -m 'add .gitignore' and then git push when you are ready.(/2)
+Deliverables
+
+You will need to push the following to your online repository for evaluation:
+
+Your modified Lab-2.ipynb containing:
+Your answers to all the above questions, including the final reflection (question 20)
+Your .gitignore file
+Note that your repository should not contain a virtual environment folder or .ipynb_checkpoints folder. That is, if these two folders happen to be in your repo, you should be ignoring them in your .gitignore and they should not appear on GitHub. Other ignored elements are optional.
+/40
